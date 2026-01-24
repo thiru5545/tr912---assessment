@@ -1,22 +1,24 @@
-﻿using System;
+﻿//videoinfos.cs
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 
-internal class videoinfos
+internal class videoinfos       //video data object 
 {
     private int Videoid;
     private string Videoname;
     private string Videourl;
     private string Subscription;
-    public Dictionary<int, String> Comments;
+    public Dictionary<int, List<String>> Comments;
 
     public videoinfos(int Videoid,string Videoname,string Videourl,string Subscription){
         this.Videoid=Videoid;
         this.Videoname=Videoname;
         this.Videourl=Videourl;
         this.Subscription = Subscription;
-        this.Comments = new Dictionary<int, String>();
+        this.Comments = new Dictionary<int, List<String>>();
         }
     public int videoid
     {
@@ -68,8 +70,11 @@ internal class videoinfos
 
     public void addcomments(int userid, string comment)
     {
-
-        Comments.Add(userid, comment);
+        if (!Comments.ContainsKey(userid))
+        {
+            Comments.Add(userid, new List<string>());
+        }
+        Comments[userid].Add(comment);
     }
 
 

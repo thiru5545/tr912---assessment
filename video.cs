@@ -1,13 +1,15 @@
-﻿using System;
+﻿//video.cs
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
 
 
-internal class video
+internal class video : Userfunctions
 {
     Dictionary<int, videoinfos> videoData = new Dictionary<int, videoinfos>();
-    public video()
+    public video()  //Default constructor which will create a video database
     {
         videoData.Add(123, new videoinfos(123, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", "B"));
         videoData.Add(124, new videoinfos(124, "Core C# Language Features & Collections & LINQ (Fundamentals)", "https://www.youtube.com/watch?v=hss23NMqW0k", "B"));
@@ -16,35 +18,43 @@ internal class video
         videoData.Add(127, new videoinfos(127, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", "P"));
     }
 
-    public void addvideo(int id, string name, string url, string sub)
+    public void addvideo(int id, string name, string url, string sub)   //admin should be able to add the video this method will handle it
     {
         videoData.Add(id, new videoinfos(id, name, url, sub));
     }
 
-    public void removevideo(int id)
-    {
-        videoData.Remove(id);
-    }
+    //public void removevideo(int id)     //admin should be able to remove the video
+    //{
+    //    videoData.Remove(id);
+    //}
+    public void removevideo(int id){videoData.Remove(id);}
 
-    public void videolist()
+    public void videolist()             // list of videos 
     {
-        foreach (int vidid in videoData.Keys)
+        if (videoData.Count == 0) { Console.WriteLine("---NO VIDEO FOUND---"); }
+        else
         {
-            Console.WriteLine(videoData[vidid].ToString());
+            foreach (int vidid in videoData.Keys)
+            {
+                Console.WriteLine(videoData[vidid].ToString());
+            }
         }
     }
 
-    public videoinfos getvideobyid(int id)
-    {
-        return videoData[id];
-    }
+    public videoinfos getvideobyid(int id) => (videoData.ContainsKey(id))?videoData[id]:null; //get video by video id
+    //{
+    //    return videoData[id];
+    //}
 
 
-    public void showcomments(int id)
+    public void showcomments(int id)        //show all commets by video id
     {
-        foreach (int com in videoData[id].Comments.Keys)
+        Console.WriteLine("---Comments for the video ID : " + id+"---");
+        if (videoData[id].Comments != null) {Console.WriteLine("---NO COMMENTS FOUND---"); }
+        foreach (int idofcommets in videoData[id].Comments.Keys)
         {
-            Console.WriteLine(com+" - "+videoData[id].Comments[com]);
+            foreach(string comments_wid in videoData[id].Comments[idofcommets])
+            Console.WriteLine(idofcommets+" - "+comments_wid);
         }
     }
 }
