@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 //this class is used to create a user database and do operation with the datas
-
-    internal class Users : video // video class is inherited to the User class basically it is a single inheritance 
+namespace consoleuser
+{
+    internal class Users : Adminfunctions // video class is inherited to the User class basically it is a single inheritance 
     {
-        Dictionary<int,Userinfo> userinfos = new Dictionary<int,Userinfo>(); //this is the data base here dictionary is used so that data can be accessed easylly 
-                                                                             //dictionary with user id and userinfo data object
-        public void adduser(int id, string name, string password, string email,string sub,Role role) // this method is used to add user to the database
+        Dictionary<int, Userinfo> userinfos = new Dictionary<int, Userinfo>(); //this is the data base here dictionary is used so that data can be accessed easylly 
+                                                                               //dictionary with user id and userinfo data object
+        public void adduser(int id, string name, string password, string email, string sub, Role role) // this method is used to add user to the database
         {
-            userinfos.Add(id,new Userinfo(id, name, password,email,sub,role));  //here creating and initialize(useing parameterized constructor) the userinfo dataobject and adding to the database
+            userinfos.Add(id, new Userinfo(id, name, password, email, sub, role));  //here creating and initialize(useing parameterized constructor) the userinfo dataobject and adding to the database
         }
 
         public void removeuser(int id) //method to remove user by id (method with parameter)
@@ -38,15 +39,15 @@ using System.Text;
                     Console.WriteLine("USER LOGINED");
                     return true;
                 }
+                else
+                {
+                    Console.WriteLine("---ENTERED THE WRONG PASSWORD---");
+                }
+            }
             else
             {
-                Console.WriteLine("---ENTERED THE WRONG PASSWORD---");
+                Console.WriteLine("---ENTER THE CORRECT ID---");
             }
-            }
-        else
-        {
-            Console.WriteLine("---ENTER THE CORRECT ID---");
-        }
             return false;
         }
 
@@ -59,3 +60,4 @@ using System.Text;
 
     }
 
+}

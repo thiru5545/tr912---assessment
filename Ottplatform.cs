@@ -4,16 +4,17 @@ using System;
 using System.Runtime.Intrinsics.X86;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-
-    class Ott : Adminfunctions //multilevel inheritance
+using Consolevideo;     // to access the video class
+using consoleuser;      //to access the video class
+    class Ott :Adminfunctions         //multilevel inheritance
     {
         static void Main()
         {
-
-            Ott ott = new Ott();
+        int id = 3;
+            Users ott = new Users();
             video ott1=new video();
             ott.adduser(1, "thiru", "12345678@", "t@t", "PB",Role.Admin);
-            ott.adduser(2, "safeek", "12345678@", "s@s", "B",Role.User);
+            ott.adduser(2, "seenu", "12345678@", "s@s", "B",Role.User);
             while (true)// while loop --> infinite loop
             {
                 Console.WriteLine("1.NEW USER \n2.LOGIN NOW \n3.EXIT");
@@ -23,8 +24,8 @@ using System.Text.RegularExpressions;
                 {
                     case 1:
                         Console.WriteLine("you choosed to add new user");
-                        Console.WriteLine("ENTER THE ID");
-                        int id=Convert.ToInt32(Console.ReadLine());
+                        //Console.WriteLine("ENTER THE ID");
+                        //int id=Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("ENTER THE USER NAME");
                         string name=Console.ReadLine();
                         bool passcheck = true;
@@ -44,9 +45,10 @@ using System.Text.RegularExpressions;
                         } while (passcheck);
                         Console.WriteLine("ENTER THE EMAIL");
                         string email=Console.ReadLine();
-                        Console.WriteLine("ENTER THE SUBSCRIPTION STATUS");
+                        Console.WriteLine("ENTER THE SUBSCRIPTION STATUS \nPB -  PREMIUM \nB - BASIC");
                         string sub = Console.ReadLine();
-                        ott.adduser(id, name, password, email,sub,Role.User);//method call with parameter 
+                        ott.adduser(id++, name, password, email,sub,Role.User);//method call with parameter 
+                        Console.WriteLine($"---USER ID : {id}---");
                         Console.WriteLine("---USER ADDED---");
                         break;
                     case 2:

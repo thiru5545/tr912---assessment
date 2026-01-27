@@ -4,15 +4,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Consolevideo;
+using consoleuser;
 
-
-internal class Adminfunctions :Users
+internal class Adminfunctions : Userfunctions //Admin can perform the user functions too so the userfuncton is inherited to admin function  
 {
     //Ott ott =new Ott();
     //video ott1 = new video();
-    public void adminfunctions(int id2,Ott ott,video ott1)
+    public void adminfunctions(int id2,Users ott,video ott1)
     {
         bool loop = true;
+        int videoid=128;        // this is used as a auto increament for video id
         while (loop) {
             Console.WriteLine("1.SHOW ALL VIDEO AS LIST \n2.SELECT THE VIDEO BY VIDEO ID \n3.VIEW ALL USERS \n4.REMOVE USER \n5.ADD VIDEO \n6.REMOVE VIDEO BY ID \n7.LOGOUT");
             int options = Convert.ToInt32(Console.ReadLine());
@@ -24,7 +26,8 @@ internal class Adminfunctions :Users
                     break;
                 case 2:
                     Console.WriteLine("choose the video by number");
-                    Console.WriteLine("ENTER THE VIDEO ID");
+
+                    Console.WriteLine("ENTER THE VIDEO ID (only numbers)");
                     int vidid = Convert.ToInt32(Console.ReadLine());
                     videoinfos videoi = ott1.getvideobyid(vidid);
                     if (videoi == null) { Console.WriteLine("---NO VIDEO FOUND---"); break; }
@@ -65,15 +68,15 @@ internal class Adminfunctions :Users
                 case 5:
                     if (ott.getuserbyid(id2).rolee == Role.Admin)
                     {
-                        Console.WriteLine("ENTER THE VIDEO ID:");
-                        int videoid = Convert.ToInt32(Console.ReadLine());
+                        //Console.WriteLine("ENTER THE VIDEO ID:");
+                        //int videoid = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("ENTER THE VIDEO NAME:");
                         string videotitle = Console.ReadLine();
                         Console.WriteLine("ENTER THE VIDEO URL:");
                         string videourl = Console.ReadLine();
                         Console.WriteLine("ENTER THE VIDEO SUBSCRIPTION:");
                         string videosubscription = Console.ReadLine();
-                        ott1.addvideo(videoid, videotitle, videourl, videosubscription);
+                        ott1.addvideo(videoid++, videotitle, videourl, videosubscription);
                     }
                     else
                     {
@@ -83,7 +86,7 @@ internal class Adminfunctions :Users
                 case 6:
                     if (ott.getuserbyid(id2).rolee == Role.Admin)
                     {
-                        int videoid = Convert.ToInt32(Console.ReadLine());
+                        int videoid1 = Convert.ToInt32(Console.ReadLine());
                         ott1.removevideo(videoid);
                     }
                     else
