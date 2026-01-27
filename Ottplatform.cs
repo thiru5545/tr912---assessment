@@ -5,8 +5,9 @@ using System.Runtime.Intrinsics.X86;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Consolevideo;     // to access the video class
-using consoleuser;      //to access the video class
-    class Ott :Adminfunctions         //multilevel inheritance
+using consoleuser;
+using ConsoleApp1.role_function;      //to access the video class
+class Ott :Adminfunctions         //multilevel inheritance
     {
         static void Main()
         {

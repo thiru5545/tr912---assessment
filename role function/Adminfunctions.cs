@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using Consolevideo;
 using consoleuser;
+using ConsoleApp1.role_function;
 
-internal class Adminfunctions : Userfunctions //Admin can perform the user functions too so the userfuncton is inherited to admin function  
+internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perform the user functions too so the userfuncton is inherited to admin function  
 {
     //Ott ott =new Ott();
     //video ott1 = new video();
