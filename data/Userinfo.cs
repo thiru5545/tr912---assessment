@@ -26,7 +26,9 @@ class Userinfo
     public string name { get { return Username; } }          //same as all private variable declaration
     public string password { get { return Password; } }
     public string email { get { return Email; } }
-    public Subscription sub { get { return Sub; } }
+    public Subscription sub { get { return Sub; }
+        set { Sub = value; }
+    }
     public Role rolee { get { return role; }}
     public override string ToString()   //override method to make priting process easyer
     {

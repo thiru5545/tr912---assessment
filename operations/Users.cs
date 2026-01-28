@@ -9,7 +9,10 @@ namespace consoleuser
     internal class Users : Adminfunctions // video class is inherited to the User class basically it is a single inheritance 
     {
         Dictionary<int, Userinfo> userinfos = new Dictionary<int, Userinfo>(); //this is the data base here dictionary is used so that data can be accessed easylly 
-                                                                               //dictionary with user id and userinfo data object
+        //public Users()
+        //{
+        //    raiseRequest(1, 1, "thiru");
+        //}                                                                      //dictionary with user id and userinfo data object
         
         public void adduser(int id, string name, string password, string email, Subscription sub, Role role) // this method is used to add user to the database
         {
@@ -51,6 +54,11 @@ namespace consoleuser
                 Console.WriteLine("---ENTER THE CORRECT ID---");
             }
             return false;
+        }
+
+        public void updateuserstatus(int userid)
+        {
+            userinfos[userid].sub = Subscription.Premium;
         }
 
         public Userinfo getuserbyid(int id) // method to find the data object by and id and return them
