@@ -64,10 +64,7 @@ internal class videoinfos       //video data object
             Sub = value;
         }    
     }
-    //public Dictionary<int,string> comments
-    //{
-    //    get { return Comments};
-    //}
+
 
     public void addcomments(int userid, string comment)
     {
@@ -78,19 +75,9 @@ internal class videoinfos       //video data object
         Comments[userid].Add(comment);
     }
 
-
-    //public Dictionary<int,String> comments
-    //{
-    //    get
-    //    {
-    //        return Comments;
-    //    }
-    //}
-
-
     public override string ToString()
     {
-        return $"VIDEO ID : {videoid} \tVIDEO TITLE : {videoname} \tVIDEO URL : {videourl}";
+        return $"VIDEO ID : {videoid} \tVIDEO TITLE : {videoname} \tVIDEO URL : {videourl} \tSUBSCRIPTION : {sub}";
     }
 }
 

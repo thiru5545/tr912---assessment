@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
 //using ConsoleApp1.data;
-
+using consoleuser;
 namespace Consolevideo
 {
     internal class video
@@ -24,12 +24,7 @@ namespace Consolevideo
         {
             videoData.Add(id, new videoinfos(id, name, url, sub));
         }
-
-        //public void removevideo(int id)     //admin should be able to remove the video
-        //{
-        //    videoData.Remove(id);
-        //}
-        public void removevideo(int id) { videoData.Remove(id); }
+        public void removevideo(int id) { videoData.Remove(id); }   //admin should be able to remove the video
 
         public void videolist()             // list of videos 
         {
@@ -72,6 +67,54 @@ namespace Consolevideo
 
         }
 
+        public void selectvideo(int id2,Users ott )
+        {
+            Console.WriteLine("choose the video by number");
+
+            Console.WriteLine("ENTER THE VIDEO ID (only numbers)");
+            int vidid = Convert.ToInt32(Console.ReadLine());
+            videoinfos videoi = getvideobyid(vidid);
+            if (videoi == null) { Console.WriteLine("---NO VIDEO FOUND---"); return; }
+            Userinfo useri = ott.getuserbyid(id2);
+            if ((useri.sub == Subscription.Basic && videoi.sub == Subscription.Basic) || useri.sub == Subscription.Premium)
+            {
+                Console.WriteLine(videoi.ToString());
+                Console.WriteLine("1.COMMENT ON THE VIDEO \n2.SHOW ALL THE COMMENTS\n3.NO NEED TO COMMENT");
+                int coment = Convert.ToInt32(Console.ReadLine());
+                if (coment == 1)
+                {
+                    Console.WriteLine("Enter the coment:");
+                    string comment = Console.ReadLine();
+                    videoi.addcomments(id2, comment);
+                }
+                else if (coment == 2)
+                {
+                    showcomments(vidid);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("---YOU CAN'T VIEW THIS VIDEO ,TO WATCH THIS VIDEO YOU HAVE TO SUBSCRIBE FOR PRIMEUM");
+                Console.WriteLine("---TRY ANOTHER VIDEO---");
+            }
+        }
+        public void Addvideo(out int tid,int id)
+        {
+            tid=id+1;
+            Console.WriteLine("ENTER THE VIDEO NAME:");
+            string videotitle = Console.ReadLine();
+            Console.WriteLine("ENTER THE VIDEO URL:");
+            string videourl = Console.ReadLine();
+            Console.WriteLine("ENTER THE VIDEO SUBSCRIPTION:");
+            string videosubscription = Console.ReadLine();
+            Subscription sub1 = Subscription.Basic;
+            if (videosubscription.ToLower().Equals("pb"))
+            {
+                sub1 = Subscription.Premium;
+            }
+            addvideo(tid, videotitle, videourl, sub1);
+        }
         
     }
 }

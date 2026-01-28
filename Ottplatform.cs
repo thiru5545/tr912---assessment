@@ -33,6 +33,7 @@ class Ott         //multilevel inheritance
                         string password;
                         do {
                             Console.WriteLine("ENTER THE PASSWORD");
+                        Console.WriteLine("THE PASSWORD SHOULD BE OF ATLEAST 8 CHARACTER OF COMBINATION UPPERCASE,LOWERCASE,DIGITS,SPECIALCHARACTER");
                             password = Console.ReadLine();
                             //if (Regex.IsMatch(password,@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"))
                             if(password.Length>=8 && password.Any(char.IsLower) && password.Any(char.IsUpper) && !password.All(char.IsLetterOrDigit) && password.Any(char.IsDigit))

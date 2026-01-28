@@ -1,13 +1,11 @@
 ﻿//Adminfunctions.cs
-//using ConsoleApp11;
-//using ConsoleApp1;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Consolevideo;
 using consoleuser;
 using ConsoleApp1.role_function;
-//using ConsoleApp1.data;
+
 
 internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perform the user functions too so the userfuncton is inherited to admin function  
 {
@@ -27,35 +25,7 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     ott1.videolist();
                     break;
                 case 2:
-                    Console.WriteLine("choose the video by number");
-
-                    Console.WriteLine("ENTER THE VIDEO ID (only numbers)");
-                    int vidid = Convert.ToInt32(Console.ReadLine());
-                    videoinfos videoi = ott1.getvideobyid(vidid);
-                    if (videoi == null) { Console.WriteLine("---NO VIDEO FOUND---"); break; }
-                    Userinfo useri = ott.getuserbyid(id2);
-                    if ((useri.sub==Subscription.Basic && videoi.sub ==Subscription.Basic) || useri.sub==Subscription.Premium)
-                    {
-                        Console.WriteLine(videoi.ToString());
-                        Console.WriteLine("1.COMMENT ON THE VIDEO \n2.SHOW ALL THE COMMENTS\n3.NO NEED TO COMMENT");
-                        int coment = Convert.ToInt32(Console.ReadLine());
-                        if (coment == 1)
-                        {
-                            Console.WriteLine("Enter the coment:");
-                            string comment = Console.ReadLine();
-                            videoi.addcomments(id2, comment);
-                        }
-                        else if (coment == 2)
-                        {
-                            ott1.showcomments(vidid);
-                        }
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("---YOU CAN'T VIEW THIS VIDEO ,TO WATCH THIS VIDEO YOU HAVE TO SUBSCRIBE FOR PRIMEUM");
-                        Console.WriteLine("---TRY ANOTHER VIDEO---");
-                    }
+                    ott1.selectvideo(id2, ott);
                     break;
                 case 3:
                     Console.WriteLine("view users");
@@ -68,38 +38,13 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     ott.removeuser(id4);
                     break;
                 case 5:
-                    if (ott.getuserbyid(id2).rolee == Role.Admin)
-                    {
-                        //Console.WriteLine("ENTER THE VIDEO ID:");
-                        //int videoid = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("ENTER THE VIDEO NAME:");
-                        string videotitle = Console.ReadLine();
-                        Console.WriteLine("ENTER THE VIDEO URL:");
-                        string videourl = Console.ReadLine();
-                        Console.WriteLine("ENTER THE VIDEO SUBSCRIPTION:");
-                        string videosubscription = Console.ReadLine();
-                        Subscription sub1=Subscription.Basic;
-                        if (videosubscription.ToLower().Equals("pb"))
-                        {
-                            sub1 = Subscription.Premium;
-                        }
-                        ott1.addvideo(videoid++, videotitle, videourl, sub1);
-                    }
-                    else
-                    {
-                        Console.WriteLine("---YOU HAVE ENTERED THE WROND ONE---");
-                    }
+                    //if (ott.getuserbyid(id2).rolee == Role.Admin)
+                        ott1.Addvideo(out videoid, videoid);
                     break;
                 case 6:
-                    if (ott.getuserbyid(id2).rolee == Role.Admin)
-                    {
+                    //if (ott.getuserbyid(id2).rolee == Role.Admin)
                         int videoid1 = Convert.ToInt32(Console.ReadLine());
                         ott1.removevideo(videoid);
-                    }
-                    else
-                    {
-                        Console.WriteLine("---YOU HAVE ENTERED THE WRONG ONE---");
-                    }
                     break;
                 case 7:
                     Console.WriteLine("Enter the video id:");
@@ -108,10 +53,8 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     break;
                 default:
                     Console.WriteLine("---LOGING OUT---");
-                    //return false;
                     loop = false;
                     break;
-                    //return true;
             }
         }
 
