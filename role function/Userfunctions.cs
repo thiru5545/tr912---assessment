@@ -1,9 +1,10 @@
 ﻿//UserFunctions.cs
+//using ConsoleApp1.data;
+using consoleuser;
+using Consolevideo;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using consoleuser;
-using Consolevideo;
 internal class Userfunctions
 {
     public void userfunctions(int id2, Users ott, video ott1)
@@ -26,7 +27,7 @@ internal class Userfunctions
                     videoinfos videoi = ott1.getvideobyid(vidid);
                     if (videoi == null) {Console.WriteLine("---NO VIDEO FOUND---"); break; } // this line will check for the video id if null breaks and loop continue
                     Userinfo useri = ott.getuserbyid(id2);
-                    if ((useri.subscription.ToLower()).Contains(videoi.subscription.ToLower()))
+                    if ((useri.sub == Subscription.Basic && videoi.sub == Subscription.Basic) || (useri.sub == videoi.sub && useri.sub == Subscription.Premium))
                     {
                         Console.WriteLine(videoi.ToString());
                         Console.WriteLine("1.COMMENT ON THE VIDEO \n2.SHOW ALL THE COMMENTS\n3.NO NEED TO COMMENT"); 

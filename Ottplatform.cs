@@ -14,8 +14,8 @@ class Ott         //multilevel inheritance
         int id = 2;
             Users ott = new Users();
             video ott1=new video();
-            ott.adduser(1, "thiru", "12345678@", "t@t", "PB",Role.Admin);
-            ott.adduser(2, "seenu", "12345678@", "s@s", "B",Role.User);
+            ott.adduser(1, "thiru", "12345678@", "t@t", Subscription.Premium,Role.Admin);
+            ott.adduser(2, "seenu", "12345678@", "s@s", Subscription.Basic,Role.User);
             while (true)// while loop --> infinite loop
             {
                 Console.WriteLine("1.NEW USER \n2.LOGIN NOW \n3.EXIT");
@@ -48,7 +48,12 @@ class Ott         //multilevel inheritance
                         string email=Console.ReadLine();
                         Console.WriteLine("ENTER THE SUBSCRIPTION STATUS \nPB -  PREMIUM \nB - BASIC");
                         string sub = Console.ReadLine();
-                        ott.adduser(++id, name, password, email,sub,Role.User);//method call with parameter 
+                    Subscription sub1 = Subscription.Basic;
+                    if (sub.ToLower().Equals("pb"))
+                    {
+                        sub1 = Subscription.Premium;
+                    }
+                    ott.adduser(++id, name, password, email,sub1,Role.User);//method call with parameter 
                         Console.WriteLine($"---USER ID : {id}---");
                         Console.WriteLine("---USER ADDED---");
                         break;

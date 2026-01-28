@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
+//using ConsoleApp1.data;
 
 namespace Consolevideo
 {
@@ -12,14 +13,14 @@ namespace Consolevideo
         Dictionary<int, videoinfos> videoData = new Dictionary<int, videoinfos>();
         public video()  //Default constructor which will create a video database
         {
-            videoData.Add(123, new videoinfos(123, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", "B"));
-            videoData.Add(124, new videoinfos(124, "Core C# Language Features & Collections & LINQ (Fundamentals)", "https://www.youtube.com/watch?v=hss23NMqW0k", "B"));
-            videoData.Add(125, new videoinfos(125, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", "B"));
-            videoData.Add(126, new videoinfos(126, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", "P"));
-            videoData.Add(127, new videoinfos(127, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", "P"));
+            videoData.Add(123, new videoinfos(123, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", Subscription.Basic));
+            videoData.Add(124, new videoinfos(124, "Core C# Language Features & Collections & LINQ (Fundamentals)", "https://www.youtube.com/watch?v=hss23NMqW0k", Subscription.Basic));
+            videoData.Add(125, new videoinfos(125, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", Subscription.Premium));
+            videoData.Add(126, new videoinfos(126, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", Subscription.Premium));
+            videoData.Add(127, new videoinfos(127, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", Subscription.Premium));
         }
 
-        public void addvideo(int id, string name, string url, string sub)   //admin should be able to add the video this method will handle it
+        public void addvideo(int id, string name, string url, Subscription sub)   //admin should be able to add the video this method will handle it
         {
             videoData.Add(id, new videoinfos(id, name, url, sub));
         }
@@ -70,5 +71,7 @@ namespace Consolevideo
             Console.WriteLine(string.Join("\n", videoData[id].Comments[uid]));
 
         }
+
+        
     }
 }

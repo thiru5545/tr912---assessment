@@ -34,7 +34,7 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     videoinfos videoi = ott1.getvideobyid(vidid);
                     if (videoi == null) { Console.WriteLine("---NO VIDEO FOUND---"); break; }
                     Userinfo useri = ott.getuserbyid(id2);
-                    if ((useri.subscription.ToLower()).Contains(videoi.subscription.ToLower()))
+                    if ((useri.sub==Subscription.Basic && videoi.sub ==Subscription.Basic) || useri.sub==Subscription.Premium)
                     {
                         Console.WriteLine(videoi.ToString());
                         Console.WriteLine("1.COMMENT ON THE VIDEO \n2.SHOW ALL THE COMMENTS\n3.NO NEED TO COMMENT");
@@ -78,7 +78,12 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                         string videourl = Console.ReadLine();
                         Console.WriteLine("ENTER THE VIDEO SUBSCRIPTION:");
                         string videosubscription = Console.ReadLine();
-                        ott1.addvideo(videoid++, videotitle, videourl, videosubscription);
+                        Subscription sub1=Subscription.Basic;
+                        if (videosubscription.ToLower().Equals("pb"))
+                        {
+                            sub1 = Subscription.Premium;
+                        }
+                        ott1.addvideo(videoid++, videotitle, videourl, sub1);
                     }
                     else
                     {
