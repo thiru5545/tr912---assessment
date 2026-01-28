@@ -58,5 +58,17 @@ namespace Consolevideo
                     Console.WriteLine(idofcommets + " - " + comments_wid);
             }
         }
+
+        public void deletecomment(int id) { 
+            showcomments(id);
+            Console.WriteLine("Enter the user id:");
+            int uid=Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(string.Join("\n",videoData[id].Comments[uid].Select((text,index)=>$"{index+1}.{text}")));
+            Console.WriteLine("Enter the comment number to be delete:");
+            int cnum=Convert.ToInt32(Console.ReadLine());
+            videoData[id].Comments[uid].RemoveAt(cnum-1);
+            Console.WriteLine(string.Join("\n", videoData[id].Comments[uid]));
+
+        }
     }
 }

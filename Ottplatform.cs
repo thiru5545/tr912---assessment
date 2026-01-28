@@ -7,11 +7,11 @@ using System.Text.RegularExpressions;
 using Consolevideo;     // to access the video class
 using consoleuser;
 using ConsoleApp1.role_function;      //to access the video class
-class Ott :Adminfunctions         //multilevel inheritance
+class Ott         //multilevel inheritance
     {
         static void Main()
         {
-        int id = 3;
+        int id = 2;
             Users ott = new Users();
             video ott1=new video();
             ott.adduser(1, "thiru", "12345678@", "t@t", "PB",Role.Admin);
@@ -48,7 +48,7 @@ class Ott :Adminfunctions         //multilevel inheritance
                         string email=Console.ReadLine();
                         Console.WriteLine("ENTER THE SUBSCRIPTION STATUS \nPB -  PREMIUM \nB - BASIC");
                         string sub = Console.ReadLine();
-                        ott.adduser(id++, name, password, email,sub,Role.User);//method call with parameter 
+                        ott.adduser(++id, name, password, email,sub,Role.User);//method call with parameter 
                         Console.WriteLine($"---USER ID : {id}---");
                         Console.WriteLine("---USER ADDED---");
                         break;

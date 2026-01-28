@@ -18,7 +18,7 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
         bool loop = true;
         int videoid=128;        // this is used as a auto increament for video id
         while (loop) {
-            Console.WriteLine("1.SHOW ALL VIDEO AS LIST \n2.SELECT THE VIDEO BY VIDEO ID \n3.VIEW ALL USERS \n4.REMOVE USER \n5.ADD VIDEO \n6.REMOVE VIDEO BY ID \n7.LOGOUT");
+            Console.WriteLine("1.SHOW ALL VIDEO AS LIST \n2.SELECT THE VIDEO BY VIDEO ID \n3.VIEW ALL USERS \n4.REMOVE USER \n5.ADD VIDEO \n6.REMOVE VIDEO BY ID \n7.DELETE COMMENT \n8.LOGOUT");
             int options = Convert.ToInt32(Console.ReadLine());
             switch (options)
             {
@@ -95,6 +95,11 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     {
                         Console.WriteLine("---YOU HAVE ENTERED THE WRONG ONE---");
                     }
+                    break;
+                case 7:
+                    Console.WriteLine("Enter the video id:");
+                    int vid = Convert.ToInt32(Console.ReadLine());
+                    ott1.deletecomment(vid);
                     break;
                 default:
                     Console.WriteLine("---LOGING OUT---");
