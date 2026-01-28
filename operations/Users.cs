@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+//using ConsoleApp1.data;
 //this class is used to create a user database and do operation with the datas
 namespace consoleuser
 {
@@ -9,6 +10,7 @@ namespace consoleuser
     {
         Dictionary<int, Userinfo> userinfos = new Dictionary<int, Userinfo>(); //this is the data base here dictionary is used so that data can be accessed easylly 
                                                                                //dictionary with user id and userinfo data object
+        
         public void adduser(int id, string name, string password, string email, string sub, Role role) // this method is used to add user to the database
         {
             userinfos.Add(id, new Userinfo(id, name, password, email, sub, role));  //here creating and initialize(useing parameterized constructor) the userinfo dataobject and adding to the database

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 //this class is declared for data object it will not include any operations
-using ConsoleApp1.data;
+//using ConsoleApp1.data;
 
 class Userinfo
 {
