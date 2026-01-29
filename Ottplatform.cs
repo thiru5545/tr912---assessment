@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using Consolevideo;     // to access the video class
 using consoleuser;
 using ConsoleApp1.role_function;      //to access the video class
-class Ott         //multilevel inheritance
+class Ott        //multilevel inheritance
     {
         static void Main()
         {
@@ -20,7 +20,9 @@ class Ott         //multilevel inheritance
             {
                 Console.WriteLine("1.NEW USER \n2.LOGIN NOW \n3.EXIT");
 
-                int choice = int.Parse(Console.ReadLine()); // type casting we can use convert.ToInt32()
+            int choice; // type casting we can use convert.ToInt32()
+                ott.typecheck(out choice);
+                
                 switch (choice) //switch case which is a type of conditional statement
                 {
                     case 1:
@@ -60,12 +62,17 @@ class Ott         //multilevel inheritance
                         break;
                     case 2:
                         Console.WriteLine("you choosed to login");
-                    bool log;
+                    bool log=false;
                     int id2;
                     string password2;
                     do {
                         Console.WriteLine("ENTER THE ID");
-                        id2 = Convert.ToInt32(Console.ReadLine());
+                        //id2 = Convert.ToInt32(Console.ReadLine());
+                        if(! int.TryParse(Console.ReadLine(), out id2))
+                        {
+                            Console.WriteLine("--- ENTER THE CORRECT VALUE (STRICTLY ONLY INTEGER) ---");
+                            continue;
+                        }
                         Console.WriteLine("ENTER THE PASSWORD");
                         password2 = Console.ReadLine();
                         log = ott.login(id2, password2);

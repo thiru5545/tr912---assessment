@@ -1,10 +1,11 @@
 ﻿//Adminfunctions.cs
+using ConsoleApp1.role_function;
+using consoleuser;
+using Consolevideo;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Consolevideo;
-using consoleuser;
-using ConsoleApp1.role_function;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perform the user functions too so the userfuncton is inherited to admin function  
 {
@@ -16,7 +17,9 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
         int videoid=128;        // this is used as a auto increament for video id
         while (loop) {
             Console.WriteLine("1.SHOW ALL VIDEO AS LIST \n2.SELECT THE VIDEO BY VIDEO ID \n3.VIEW ALL USERS \n4.REMOVE USER \n5.ADD VIDEO \n6.REMOVE VIDEO BY ID \n7.DELETE COMMENT \n8.VIEW REQUEST \n9.ACTION ON REQUEST BY ID \n10.LOGOUT");
-            int options = Convert.ToInt32(Console.ReadLine());
+            int options;
+            typecheck(out  options);
+
             switch (options)
             {
                 case 1:
@@ -33,7 +36,8 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                 case 4:
                     Console.WriteLine("remove user");
                     Console.WriteLine("ENTER THE ID");
-                    int id4 = Convert.ToInt32(Console.ReadLine());
+                    int id4;
+                    typecheck(out id4);
                     ott.removeuser(id4);
                     break;
                 case 5:
@@ -42,12 +46,14 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     break;
                 case 6:
                     //if (ott.getuserbyid(id2).rolee == Role.Admin)
-                    int videoid1 = Convert.ToInt32(Console.ReadLine());
+                    int videoid1;
+                    typecheck(out videoid1);
                     ott1.removevideo(videoid);
                     break;
                 case 7:
                     Console.WriteLine("Enter the video id:");
-                    int vid = Convert.ToInt32(Console.ReadLine());
+                    int vid;
+                    typecheck(out vid);
                     ott1.deletecomment(vid);
                     break;
                 case 8:
@@ -56,9 +62,11 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     break;
                 case 9:
                     Console.WriteLine("ENTER THE REQUEST ID:");
-                    int reqid=Convert.ToInt32(Console.ReadLine());
+                    int reqid;
+                    typecheck(out reqid);
                     Console.WriteLine("1.APPROVE \n2.REJECT");
-                    int option=Convert.ToInt32(Console.ReadLine());
+                    int option;
+                    typecheck(out option);
                     if (option == 1)
                     {
                         ott.updatestatus(reqid, RequestType.Approved);
@@ -82,5 +90,6 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
         }
 
     }
+    
 }
 

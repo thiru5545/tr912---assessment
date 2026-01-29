@@ -72,7 +72,15 @@ namespace Consolevideo
             Console.WriteLine("choose the video by number");
 
             Console.WriteLine("ENTER THE VIDEO ID (only numbers)");
-            int vidid = Convert.ToInt32(Console.ReadLine());
+                int vidid;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out vidid)) {
+                    Console.WriteLine("--- ENTER THE CORRECT VALUE (STRICTLY ONLY INTEGER) ---");
+                    continue;
+                }
+                break;
+            }
             videoinfos videoi = getvideobyid(vidid);
             if (videoi == null) { Console.WriteLine("---NO VIDEO FOUND---"); return; }
             Userinfo useri = ott.getuserbyid(id2);
@@ -80,7 +88,16 @@ namespace Consolevideo
             {
                 Console.WriteLine(videoi.ToString());
                 Console.WriteLine("1.COMMENT ON THE VIDEO \n2.SHOW ALL THE COMMENTS\n3.NO NEED TO COMMENT");
-                int coment = Convert.ToInt32(Console.ReadLine());
+                int coment;
+                while (true)
+                {
+                    if (!int.TryParse(Console.ReadLine(), out coment))
+                    {
+                        Console.WriteLine("--- ENTER THE CORRECT VALUE (STRICTLY ONLY INTEGER) ---");
+                        continue;
+                    }
+                    break;
+                }
                 if (coment == 1)
                 {
                     Console.WriteLine("Enter the coment:");
