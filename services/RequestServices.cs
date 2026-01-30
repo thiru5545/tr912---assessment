@@ -7,7 +7,7 @@ using System.Text;
 
 internal class RequestServices :AdminServices , IRequestServices
 {
-    Dictionary<int, Request> requests = new Dictionary<int, Request>();
+    public Dictionary<int, Request> requests = new Dictionary<int, Request>();
     int requestid = 0;
 
     //public Requestoperation()

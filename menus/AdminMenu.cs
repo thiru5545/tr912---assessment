@@ -40,12 +40,12 @@ internal class AdminMenu : UserMenu,IAdminMenu //Admin can perform the user func
                     ott.removeuser(id4);
                     break;
                 case 5:
-                    ott1.Addvideo(out videoid, videoid);
+                    ott1.Addvideo(out videoid, videoid,ott1);
                     break;
                 case 6:
                     int videoid1;
                     typecheck(out videoid1);
-                    ott1.removevideo(videoid);
+                    ott1.removevideo(videoid,ott1);
                     break;
                 case 7:
                     Console.WriteLine("Enter the video id:");
@@ -55,7 +55,7 @@ internal class AdminMenu : UserMenu,IAdminMenu //Admin can perform the user func
                     break;
                 case 8:
                     Console.WriteLine("show all request as list");
-                    req.viewrequest();
+                    req.viewrequest(req);
                     break;
                 case 9:req.ActionOnRequest(ott,req);break;
                 default:

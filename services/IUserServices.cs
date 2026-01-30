@@ -15,6 +15,6 @@ internal interface IUserServices
     void updateuserstatus(int userid);
 
     // User creation & login flow
-    void CreateUser();
+    //void CreateUser();
     void UserLogin(UserServices ott, VideoServices ott1, RequestServices req);
 }

@@ -25,7 +25,7 @@ internal class MainMenu
 
             switch (choice) //switch case which is a type of conditional statement
             {
-                case 1: ott.CreateUser(); break;
+                case 1: ott1.CreateUser(ott); break;
                 case 2: ott.UserLogin(ott, ott1,req); break;
                 case 3: Console.WriteLine("THANKS FOR USING OUR OTT PLATFORM !!!"); return;
 
