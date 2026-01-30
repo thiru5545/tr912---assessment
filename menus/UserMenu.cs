@@ -1,13 +1,12 @@
-﻿//UserFunctions.cs
+﻿//USerMenu.cs
 //using ConsoleApp1.data;
-using consoleuser;
-using Consolevideo;
+//using consoleuser;
 using System;
 using System.Collections.Generic;
 using System.Text;
-internal class Userfunctions : Requestoperation
+internal class UserMenu
 {
-    public void userfunctions(int id2, Users ott, video ott1)
+    public void usermenu(int id2, UserServices ott, VideoServices ott1, RequestServices req)
     {
         bool loop = true;
         while (loop)
@@ -26,11 +25,11 @@ internal class Userfunctions : Requestoperation
                     break;
                 case 3:
                     //Console.WriteLine("PENDING");
-                    addrequest(id2);
+                    req.addrequest(id2);
                     break;
                 case 4:
                     //view request status
-                    viewrequest(id2);
+                    req.viewrequest(id2);
                     break;
                 default:
                     Console.WriteLine("---LOGOUT---");

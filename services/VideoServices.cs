@@ -1,17 +1,18 @@
-﻿//video.cs
+﻿//VideoServices.cs
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
+//using ConsoleApp1.services;
+
 //using ConsoleApp1.data;
-using consoleuser;
-namespace Consolevideo
-{
-    internal class video
+
+
+    internal class VideoServices : AdminServices , IVideoServices
     {
-        Dictionary<int, videoinfos> videoData = new Dictionary<int, videoinfos>();
-        public video()  //Default constructor which will create a video database
+        public Dictionary<int, videoinfos> videoData = new Dictionary<int, videoinfos>();
+        public VideoServices()  //Default constructor which will create a video database
         {
             videoData.Add(123, new videoinfos(123, "C# Language Fundamentals & OOPS Basics", "https://www.youtube.com/watch?v=gfkTfcpWqAY", Subscription.Basic));
             videoData.Add(124, new videoinfos(124, "Core C# Language Features & Collections & LINQ (Fundamentals)", "https://www.youtube.com/watch?v=hss23NMqW0k", Subscription.Basic));
@@ -39,48 +40,52 @@ namespace Consolevideo
         }
 
         public videoinfos getvideobyid(int id) => (videoData.ContainsKey(id)) ? videoData[id] : null; //get video by video id if no video found returns null 
-                                                                                                      //{
-                                                                                                      //    return videoData[id];
-                                                                                                      //}
 
 
-        public void showcomments(int id)        //show all commets by video id
+        public bool showcomments(int id)        //show all commets by video id
         {
             Console.WriteLine("---Comments for the video ID : " + id + "---");
-            if (videoData[id].Comments != null) { Console.WriteLine("---NO COMMENTS FOUND---"); }
+
+            if (videoData[id].Comments.Count==0) 
+        {
+            Console.WriteLine("---NO COMMENTS FOUND---");
+            return false;
+        }
+        //Console.WriteLine(videoData[id].Comments.Count);
             foreach (int idofcommets in videoData[id].Comments.Keys)
             {
                 foreach (string comments_wid in videoData[id].Comments[idofcommets])
                     Console.WriteLine(idofcommets + " - " + comments_wid);
             }
+            return true;
         }
 
-        public void deletecomment(int id) { 
-            showcomments(id);
+        public void deletecomment(int id) {
+        if (showcomments(id))
+        {
             Console.WriteLine("Enter the user id:");
-            int uid=Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(string.Join("\n",videoData[id].Comments[uid].Select((text,index)=>$"{index+1}.{text}")));
+            int uid = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(string.Join("\n", videoData[id].Comments[uid].Select((text, index) => $"{index + 1}.{text}")));
             Console.WriteLine("Enter the comment number to be delete:");
-            int cnum=Convert.ToInt32(Console.ReadLine());
-            videoData[id].Comments[uid].RemoveAt(cnum-1);
-            Console.WriteLine(string.Join("\n", videoData[id].Comments[uid]));
-
+            int cnum = Convert.ToInt32(Console.ReadLine());
+            videoData[id].Comments[uid].RemoveAt(cnum - 1);//remove by index
+            Console.WriteLine("---COMMENT DELETED SUCCESSFULLY---");
+            if (videoData[id].Comments[uid].Count == 0)
+            {
+                videoData[id].Comments.Remove(uid);
+                Console.WriteLine("---COMMENT DELETED SUCCESSFULLY---");
+            }
+            //Console.WriteLine(string.Join("\n", videoData[id]));
+        }
         }
 
-        public void selectvideo(int id2,Users ott )
+        public void selectvideo(int id2,UserServices ott )
         {
             Console.WriteLine("choose the video by number");
 
             Console.WriteLine("ENTER THE VIDEO ID (only numbers)");
-                int vidid;
-            while (true)
-            {
-                if (!int.TryParse(Console.ReadLine(), out vidid)) {
-                    Console.WriteLine("--- ENTER THE CORRECT VALUE (STRICTLY ONLY INTEGER) ---");
-                    continue;
-                }
-                break;
-            }
+            int vidid;
+            ott.typecheck(out vidid);
             videoinfos videoi = getvideobyid(vidid);
             if (videoi == null) { Console.WriteLine("---NO VIDEO FOUND---"); return; }
             Userinfo useri = ott.getuserbyid(id2);
@@ -89,15 +94,7 @@ namespace Consolevideo
                 Console.WriteLine(videoi.ToString());
                 Console.WriteLine("1.COMMENT ON THE VIDEO \n2.SHOW ALL THE COMMENTS\n3.NO NEED TO COMMENT");
                 int coment;
-                while (true)
-                {
-                    if (!int.TryParse(Console.ReadLine(), out coment))
-                    {
-                        Console.WriteLine("--- ENTER THE CORRECT VALUE (STRICTLY ONLY INTEGER) ---");
-                        continue;
-                    }
-                    break;
-                }
+                ott.typecheck(out  coment);
                 if (coment == 1)
                 {
                     Console.WriteLine("Enter the coment:");
@@ -134,4 +131,3 @@ namespace Consolevideo
         }
         
     }
-}

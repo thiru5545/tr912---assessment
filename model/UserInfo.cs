@@ -5,7 +5,7 @@ using System.Collections.Generic;
 //this class is declared for data object it will not include any operations
 //using ConsoleApp1.data;
 
-class Userinfo
+class Userinfo : IUserInfo
 {
     private int Id;                     //encapsulation binding both the data and the method but avoiding the direct access of the data by declareing it as private
     private string Username;            //made all the data as private access control

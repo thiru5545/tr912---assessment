@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-internal class videoinfos       //video data object 
+internal class videoinfos : IVideoInfo   //video data object 
 {
     private int Videoid;
     private string Videoname;

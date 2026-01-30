@@ -1,11 +1,11 @@
 ﻿//Requestoperation.cs
-using consoleuser;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-internal class Requestoperation
+internal class RequestServices :AdminServices , IRequestServices
 {
     Dictionary<int, Request> requests = new Dictionary<int, Request>();
     int requestid = 0;

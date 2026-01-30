@@ -1,17 +1,16 @@
-﻿//Adminfunctions.cs
-using ConsoleApp1.role_function;
-using consoleuser;
-using Consolevideo;
+﻿//AdminMenu.cs
+//using ConsoleApp1.role_function;
+//using consoleuser;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perform the user functions too so the userfuncton is inherited to admin function  
+internal class AdminMenu : UserMenu,IAdminMenu //Admin can perform the user functions too so the userfuncton is inherited to admin function  
 {
     //Ott ott =new Ott();
     //video ott1 = new video();
-    public void adminfunctions(int id2,Users ott,video ott1)
+    public void adminmenu(int id2,UserServices ott,VideoServices ott1,RequestServices req)
     {
         bool loop = true;
         int videoid=128;        // this is used as a auto increament for video id
@@ -41,11 +40,9 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     ott.removeuser(id4);
                     break;
                 case 5:
-                    //if (ott.getuserbyid(id2).rolee == Role.Admin)
                     ott1.Addvideo(out videoid, videoid);
                     break;
                 case 6:
-                    //if (ott.getuserbyid(id2).rolee == Role.Admin)
                     int videoid1;
                     typecheck(out videoid1);
                     ott1.removevideo(videoid);
@@ -54,34 +51,13 @@ internal class Adminfunctions : Userfunctions,IAdminfunctions //Admin can perfor
                     Console.WriteLine("Enter the video id:");
                     int vid;
                     typecheck(out vid);
-                    ott1.deletecomment(vid);
+                    ott1.DeleteComments(vid,ott1);
                     break;
                 case 8:
                     Console.WriteLine("show all request as list");
-                    ott.viewrequest();
+                    req.viewrequest();
                     break;
-                case 9:
-                    Console.WriteLine("ENTER THE REQUEST ID:");
-                    int reqid;
-                    typecheck(out reqid);
-                    Console.WriteLine("1.APPROVE \n2.REJECT");
-                    int option;
-                    typecheck(out option);
-                    if (option == 1)
-                    {
-                        ott.updatestatus(reqid, RequestType.Approved);
-                        Request re = ott.GetRequest(reqid);
-                        if (re == null) { Console.WriteLine("---REQUEST NOT FOUND---"); }
-                        else
-                        {
-                            ott.updateuserstatus(re.Userid);
-                        }
-                    }
-                    else
-                    {
-                        ott.updatestatus(reqid, RequestType.Rejected);
-                    }
-                        break;
+                case 9:req.ActionOnRequest(ott,req);break;
                 default:
                     Console.WriteLine("---LOGING OUT---");
                     loop = false;
