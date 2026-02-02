@@ -20,12 +20,12 @@ internal class MainMenu
         {
             Console.WriteLine("1.NEW USER \n2.LOGIN NOW \n3.EXIT");
 
-            int choice; // type casting we can use convert.ToInt32()
+            int choice;
             ott.typecheck(out choice);
 
             switch (choice) //switch case which is a type of conditional statement
             {
-                case 1: ott1.CreateUser(ott); break;
+                case 1: ott.CreateUser(); break;
                 case 2: ott.UserLogin(ott, ott1,req); break;
                 case 3: Console.WriteLine("THANKS FOR USING OUR OTT PLATFORM !!!"); return;
 
@@ -33,4 +33,3 @@ internal class MainMenu
         }
     }
 }
-////}

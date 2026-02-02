@@ -6,7 +6,7 @@ using System.Text;
 
 
 
-    internal class AdminServices : IAdminServices
+    internal class AdminServices :UserMenu, IAdminServices 
     {
     int id = 2;
         public void ActionOnRequest(UserServices ott,RequestServices req)
@@ -46,7 +46,7 @@ using System.Text;
             if (ott1.videoData[id].Comments[uid].Count == 0)
             {
                 ott1.videoData[id].Comments.Remove(uid);
-                Console.WriteLine("---COMMENT DELETED SUCCESSFULLY---");
+                //Console.WriteLine("---COMMENT DELETED SUCCESSFULLY---");
             }
             //Console.WriteLine(string.Join("\n", videoData[id]));
         }
@@ -67,36 +67,9 @@ using System.Text;
             sub1 = Subscription.Premium;
         }
         ott1.addvideo(tid, videotitle, videourl, sub1);
+        Console.WriteLine("---VIDEO ADDED SUCCESSFULLY---");
     }
-    public void CreateUser(UserServices ott)
-    {
-        Console.WriteLine("you choosed to add new user");
-
-        Console.WriteLine("ENTER THE USER NAME");
-        string name = Console.ReadLine();
-        bool passcheck = true;
-        string password;
-        do
-        {
-            Console.WriteLine("ENTER THE PASSWORD");
-            Console.WriteLine("THE PASSWORD SHOULD BE OF ATLEAST 8 CHARACTER OF COMBINATION UPPERCASE,LOWERCASE,DIGITS,SPECIALCHARACTER");
-            password = Console.ReadLine();
-            //if (Regex.IsMatch(password,@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"))
-            if (password.Length >= 8 && password.Any(char.IsLower) && password.Any(char.IsUpper) && !password.All(char.IsLetterOrDigit) && password.Any(char.IsDigit))
-            {
-                passcheck = false;
-            }
-            else
-            {
-                Console.WriteLine("RE-ENTER THE PASSWORD");
-            }
-        } while (passcheck);
-        Console.WriteLine("ENTER THE EMAIL");
-        string email = Console.ReadLine();
-        ott.adduser(++id, name, password, email, Subscription.Basic, Role.User);//method call with parameter 
-        Console.WriteLine($"---USER ID : {id}---");
-        Console.WriteLine("---USER ADDED---");
-    }
+    
 
 
     public void removevideo(int id,VideoServices ott1) { ott1.videoData.Remove(id); }

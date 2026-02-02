@@ -62,35 +62,35 @@ using System.Text;
             return userinfos[id];
         }
 
-        //public void CreateUser()
-        //{
-        //    Console.WriteLine("you choosed to add new user");
+        public void CreateUser()
+        {
+            Console.WriteLine("you choosed to add new user");
 
-        //    Console.WriteLine("ENTER THE USER NAME");
-        //    string name = Console.ReadLine();
-        //    bool passcheck = true;
-        //    string password;
-        //    do
-        //    {
-        //        Console.WriteLine("ENTER THE PASSWORD");
-        //        Console.WriteLine("THE PASSWORD SHOULD BE OF ATLEAST 8 CHARACTER OF COMBINATION UPPERCASE,LOWERCASE,DIGITS,SPECIALCHARACTER");
-        //        password = Console.ReadLine();
-        //        //if (Regex.IsMatch(password,@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"))
-        //        if (password.Length >= 8 && password.Any(char.IsLower) && password.Any(char.IsUpper) && !password.All(char.IsLetterOrDigit) && password.Any(char.IsDigit))
-        //        {
-        //            passcheck = false;
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("RE-ENTER THE PASSWORD");
-        //        }
-        //    } while (passcheck);
-        //    Console.WriteLine("ENTER THE EMAIL");
-        //    string email = Console.ReadLine();
-        //    adduser(++id, name, password, email, Subscription.Basic, Role.User);//method call with parameter 
-        //    Console.WriteLine($"---USER ID : {id}---");
-        //    Console.WriteLine("---USER ADDED---");
-        //}
+            Console.WriteLine("ENTER THE USER NAME");
+            string name = Console.ReadLine();
+            bool passcheck = true;
+            string password;
+            do
+            {
+                Console.WriteLine("ENTER THE PASSWORD");
+                Console.WriteLine("THE PASSWORD SHOULD BE OF ATLEAST 8 CHARACTER OF COMBINATION UPPERCASE,LOWERCASE,DIGITS,SPECIALCHARACTER");
+                password = Console.ReadLine();
+                //if (Regex.IsMatch(password,@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"))
+                if (password.Length >= 8 && password.Any(char.IsLower) && password.Any(char.IsUpper) && !password.All(char.IsLetterOrDigit) && password.Any(char.IsDigit))
+                {
+                    passcheck = false;
+                }
+                else
+                {
+                    Console.WriteLine("RE-ENTER THE PASSWORD");
+                }
+            } while (passcheck);
+            Console.WriteLine("ENTER THE EMAIL");
+            string email = Console.ReadLine();
+            adduser(++id, name, password, email, Subscription.Basic, Role.User);//method call with parameter 
+            Console.WriteLine($"---USER ID : {id}---");
+            Console.WriteLine("---USER ADDED---");
+        }
 
 
         public void UserLogin(UserServices ott, VideoServices ott1,RequestServices req)

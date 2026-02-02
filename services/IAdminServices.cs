@@ -13,7 +13,7 @@ internal interface IAdminServices
     void removevideo(int id, VideoServices ott1);
 
     // User management
-    void CreateUser(UserServices ott);
+    //void CreateUser(UserServices ott);
 
     // Request viewing
     void viewrequest(RequestServices req);

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 //using ConsoleApp1.data;
 
 
-    internal class VideoServices : AdminServices , IVideoServices
+    internal class VideoServices :  IVideoServices
     {
         public Dictionary<int, videoinfos> videoData = new Dictionary<int, videoinfos>();
         public VideoServices()  //Default constructor which will create a video database
