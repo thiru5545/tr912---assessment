@@ -1,23 +1,24 @@
 ﻿//videoinfos.cs
 
+//using ConsoleApp1.data;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 
-internal class videoinfos       //video data object 
+internal class videoinfos : IVideoInfo   //video data object 
 {
     private int Videoid;
     private string Videoname;
     private string Videourl;
-    private string Subscription;
+    private Subscription Sub;
     public Dictionary<int, List<String>> Comments;
 
-    public videoinfos(int Videoid,string Videoname,string Videourl,string Subscription){
+    public videoinfos(int Videoid,string Videoname,string Videourl,Subscription Sub){
         this.Videoid=Videoid;
         this.Videoname=Videoname;
         this.Videourl=Videourl;
-        this.Subscription = Subscription;
+        this.Sub = Sub;
         this.Comments = new Dictionary<int, List<String>>();
         }
     public int videoid
@@ -53,20 +54,17 @@ internal class videoinfos       //video data object
             Videourl = value;
         }
     }
-    public string subscription
+    public Subscription sub
     {
         get{
-        return Subscription;
+        return Sub;
         }
         set
         {
-            Subscription = value;
+            Sub = value;
         }    
     }
-    //public Dictionary<int,string> comments
-    //{
-    //    get { return Comments};
-    //}
+
 
     public void addcomments(int userid, string comment)
     {
@@ -77,19 +75,9 @@ internal class videoinfos       //video data object
         Comments[userid].Add(comment);
     }
 
-
-    //public Dictionary<int,String> comments
-    //{
-    //    get
-    //    {
-    //        return Comments;
-    //    }
-    //}
-
-
     public override string ToString()
     {
-        return $"VIDEO ID : {videoid} \tVIDEO TITLE : {videoname} \tVIDEO URL : {videourl}";
+        return $"VIDEO ID : {videoid} \tVIDEO TITLE : {videoname} \tVIDEO URL : {videourl} \tSUBSCRIPTION : {sub}";
     }
 }
 
